@@ -1,0 +1,71 @@
+<div class="card-body">
+    <div growl limit-messages="1"></div>
+    <div class="ui-grid-cell-contents emp-grid-content">
+        <div class="row m-b-sm m-t-sm">
+            <div ng-show="isSearch">
+                <div class="col-md-2 hidden-xs hidden-sm">
+                    <div class="hidden-xs">
+                        <small>No of Items:&nbsp;&nbsp;</small>
+                        <ui-select ng-model="selectCount.selected" name="DataTables_Table_0_length"
+                            aria-controls="DataTables_Table_0" search-enabled="false" ng-change="vm.countChange()" theme="select2"
+                            title="Select Id">
+                            <ui-select-match id="challenges-dropdown">{{$select.selected.id}}</ui-select-match>
+                            <ui-select-choices repeat="item in gridCount">
+                                <span class="grid-dropdown" ng-bind-html="item.name"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-md-6 col-sm-12 col-sm-12 super-ui-grid">
+                    <input type="text" ng-model="searchterm" ng-minlength="1" placeholder="Search" id="search-table" autofocus
+                        ng-change="vm.searchGrid(searchterm)" class="input-sm form-control input-highlight my-challenge-menu">
+                    <span class="input-group-btn"></span>
+                </div>
+                <div class="col-md-2 col-sm-10 col-xs-10 text-right grid-downloads grid-btn-align">
+                    <button class="btn btn-xs pdf-download" ng-click="downloadPDF()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-xs excel-download" ng-click="downloadCSV()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="col-md-1 col-sm-2 col-xs-2" align="right">
+                    <button class="btn btn-xs btn-primary pull-right emp-user2 grid-dropdown" ng-click="createChoice()" ng-show="isNotification">Add &nbsp;&nbsp;
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-xs btn-primary pull-right emp-user2 grid-dropdown" ng-click="addRow()" ng-show="isQuestion">Add &nbsp;&nbsp;
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loader-centering" align="center" ng-show="vm.isLoading">
+        <label>Please wait ...</label>
+        <br>
+        <img id="mySpinner" src="assets/images/loader.gif">
+    </div>
+    <div data-ng-if="!vm.isLoading" ng-show="commonGrid">
+        <div class="grid" ui-grid="vm.gridOptions" ui-grid-edit ui-grid-pagination="" ui-grid-resize-columns ui-grid-exporter
+            ui-grid-move-columns></div>
+    </div>
+    <div ng-hide="commonGrid" align="center" class="grid-alert2 success">
+        <label>{{vm.detailedErrorMessage}}</label>
+    </div>
+    <div class="ibox-emp-content" data-z="0.5" id="grid-pagination" ng-show="isPagination">
+        <div class="row m-b-sm m-t-sm">
+            <div class="col-sm-4 col-md-4 hidden-xs">
+                <div class="my-challenge-pagination" role="status" aria-live="polite">Showing
+                    <b>{{vm.begin}}</b> to
+                    <b>{{vm.end}}</b> entries out of
+                    <b>{{totalItems}}</b>
+                </div>
+            </div>
+            <div class="col-sm-8 col-md-8 col-xs-12" align="right">
+                <pagination total-items="vm.gridOptions.totalItems" ng-model="vm.gridOptions.paginationCurrentPage" max-size="2"
+                    boundary-links="true" first-text="&laquo;" last-text="&raquo;" next-text="&rsaquo;" previous-text="&lsaquo;"
+                    items-per-page="vm.gridOptions.paginationPageSize" class="pagination-sm"></pagination>
+            </div>
+        </div>
+    </div>
+</div>

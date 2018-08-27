@@ -1,0 +1,85 @@
+<div data-ng-controller="gridController" class="panel panel-body">
+  <div class="col-md-10">
+      <table class="table create-interview-table" ng-if="interviews.length">
+          <thead class="my-challenge-header">
+          <tr class="tab-header">
+              <th><span class="span-header">Actions</span></th>
+              <th ng-click="sort('interviewName')"
+                  class="span-header table-title">Position<span
+                      class="fa fa-angle-down angle-icon"
+                      ng-show="sortKey=='interviewName'"
+                      ng-class="{'fa fa-angle-up':reverse,'fa fa-angle-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('subject.name')" class="span-header">
+                  Subject<i class="fa fa-angle-down angle-icon"
+                            ng-show="sortKey=='subject.name'"
+                            ng-class="{'fa fa-angle-up':reverse,'fa fa-angle-down':!reverse}"></i>
+              </th>
+              <th ng-click="sort('interviewStartDateTime')"
+                  class="span-header">StartDate<span
+                      class="fa fa-angle-down angle-icon"
+                      ng-show="sortKey=='interviewStartDateTime'"
+                      ng-class="{'fa fa-angle-up':reverse,'fa fa-angle-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('interviewExpiredDateTime')"
+                  class="span-header">ExpirationDate<span
+                      class="fa fa-angle-down angle-icon"
+                      ng-show="sortKey=='interviewExpiredDateTime'"
+                      ng-class="{'fa fa-angle-up':reverse,'fa fa-angle-down':!reverse}"></span>
+              </th>
+              <th ng-click="sort('interview.candidateEmail')"
+                  class="span-header">Candidates
+              </th>
+              <th class="span-header">Send</th>
+              <th class="span-header">Details</th>
+          </tr>
+          </thead>
+          <tbody class="row">
+          <tr class="interviews-table"
+              ng-repeat="interview in interviews | filter:searchInterview | filter:paginate | orderBy:sortKey:reverse">
+              <td class="table-actions"><a class="btn btn-info"
+                                           title="edit"
+                                           ng-click="editInterview(interview)"><i
+                      class="glyphicon glyphicon-plus"
+                      aria-hidden="true"></i> </a><a
+                      class="btn btn-danger btn-delete"
+                      data-placement="right" title="remove"
+                      ng-click="removeInterview(interview._id)"><i
+                      class="glyphicon glyphicon-trash"
+                      aria-hidden="true"></i></a></td>
+              <td class="text-left hidden-xs">&nbsp;&nbsp;&nbsp;
+                  {{interview.positionDetails.position}}
+              </td>
+              <td class="text-left"><span><subject
+                      name="{{interview.subject.name}}"></subject></span>
+              </td>
+              <td class="text-left"><span>&nbsp;<start-date
+                      name="{{interview.interviewStartDateTime.substring(4, 16) | lowercase}}"></start-date></span>
+              </td>
+              <td class="text-left"><span>&nbsp;<end-date
+                      name="{{interview.interviewExpiredDateTime.substring(4, 16) | lowercase}}"></end-date></span>
+              </td>
+              <td class="text-left table-data"><span
+                      class="badge badge-sent">{{interview.candidateEmail}}</span>
+              </td>
+              <td class="text-left table-actions">
+                  <button type="button" class="btn btn-info btn-send"
+                          ng-click="shareInterview(interview)"><span
+                          class="badge badge-sned"><i
+                          class="fa fa-share" aria-hidden="true"></i></span>
+                      send
+                  </button>
+              </td>
+              <td class="text left table-actions">
+                  <button type="button" class="btn btn-info"
+                          ng-click="moreDetails(interview)"><span
+                          class="badge badge-info"><i
+                          class="fa fa-info"
+                          aria-hidden="true"></i></span> info
+                  </button>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

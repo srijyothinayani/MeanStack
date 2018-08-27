@@ -1,0 +1,639 @@
+<div class="page-section completed-details compltd-detls" data-ng-controller="resultsController">
+            <div class="interview-results">
+                <div class="row">
+                    <div class="panel panel-default heading-details border-none">
+                        <div class="panel-body">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center offset-top-7">
+                                <h3><strong>DETAILS</strong>
+                                </h3>
+                            </div>
+                            <div class="col-md-4 text-right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="report-page">
+                        <div class="row section-one">
+                            <div class="col-md-3 padding-right-none">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-md-7">
+                                            <div class="">
+                                                <h4 class="m-b-0 text-info">{{challenge.challengeCreatedDatetime
+                                                    | date :"MMM d, y"}}</h4>
+
+                                                <h3 class=" "><strong>Created On</strong></h3></div>
+                                        </div>
+                                        <div class="col-md-5 text-center padding-none">
+                                            <div class="m-l-10">
+                                                <h4 class="m-b-0 text-info">{{challenge.challengeCreatedDatetime
+                                                    | date :"h:mm a"}}</h4>
+
+                                                <h3 class=" "><strong><i class="fa fa-clock-o text-red"
+                                                                         aria-hidden="true"></i></strong></h3></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 padding-right-none">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-md-7 padding-left-none">
+                                            <div class="">
+                                                <h4 class="m-b-0 text-primary">
+                                                    {{challenge.interviewDetail.interviewStartDateTime
+                                                    | date :"MMM d, y"}}</h4>
+
+                                                <h3 class=" "><strong>Scheduled On</strong></h3></div>
+                                        </div>
+                                        <div class="col-md-5 text-center padding-none">
+                                            <div class="m-l-10">
+                                                <h4 class="m-b-0 text-primary">
+                                                    {{challenge.interviewDetail.interviewStartDateTime
+                                                    | date :"h:mm a"}}</h4>
+
+                                                <h3 class=" "><strong><i class="fa fa-clock-o text-red"
+                                                                         aria-hidden="true"></i></strong></h3></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 padding-right-none">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="text-center">
+                                            <div class="m-l-10 align-self-center">
+                                                <h4 class="m-b-0 text-info" data-ng-if="challenge.reviewers.length">10</h4>
+
+                                                <h3 class=" "><strong>Total Reviewers</strong></h3></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="text-center">
+                                            <div class="m-l-10 align-self-center">
+                                                <h4 class="m-b-0 text-info">Need Review</h4>
+                                                <h4 class="m-b-0 text-info" data-ng-if="challenge.isCompleted">
+                                                    Review Done</h4>
+
+
+                                                <h3 class=" "><strong>Review Status</strong></h3></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default"
+                                     data-ng-if="challenge.isExpired || challenge.isUpcoming">
+                                    <div class="panel-body">
+                                        <div class="col-md-7 padding-left-none">
+                                            <div class="">
+                                                <h4 class="m-b-0 text-success">
+                                                    {{challenge.interviewDetail.interviewExpiredDateTime
+                                                    | date :"MMM d, y"}}</h4>
+
+                                                <h3 data-ng-if="challenge.isUpcoming"><strong>Expires On</strong></h3>
+                                            </div>
+                                            <h3 data-ng-if="challenge.isExpired"><strong>Expired On</strong></h3></div>
+                                        <div class="col-md-5 text-center padding-none">
+                                            <div class="m-l-10">
+                                                <h4 class="m-b-0 text-success">
+                                                    {{challenge.interviewDetail.interviewExpiredDateTime
+                                                    | date :"h:mm a"}}</h4>
+
+                                                <h3 class=" "><strong><i class="fa fa-clock-o text-red"
+                                                                         aria-hidden="true"></i></strong></h3></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default border-none detail-section-1">
+                                <div class="panel-body">
+                                    <h2 class="default-color company-name" title="Company">
+                                        {{challenge.interviewDetail.positionDetails.company.name?challenge.interviewDetail.positionDetails.company.name:'Google'}} </h2>
+                                    <ul class="description">
+                                        <h5 class="roles">
+                                            <span class="text-black"><strong>Description:</strong></span><span data-ng-if="challenge.interviewDetail.positionDetails.description" ng-text-truncate="challenge.interviewDetail.positionDetails.description" ng-tt-chars-threshold="500"></span>
+                                            <span data-ng-if="!challenge.interviewDetail.positionDetails.description" ng-text-truncate="challenge.description" ng-tt-chars-threshold="500"></span>
+                                        </h5>
+                                    </ul>
+                                    <div class="flex-container">
+                                        <div title="Location"><i class="fa fa-map-marker text-success"
+                                                                 aria-hidden="true"></i><span>&nbsp; {{challenge.interviewDetail.positionDetails.company.location?challenge.interviewDetail.positionDetails.company.location:'India'}}</span>
+                                        </div>
+                                        <div title="Interview title"><i class="fa fa-building-o text-warning"
+                                                                        aria-hidden="true"></i> <span>&nbsp; {{challenge.interviewDetail.interviewerName}}</span>
+                                        </div>
+                                        <div title="Industry"><i class="fa fa-id-card-o text-primary"
+                                                                 aria-hidden="true"></i>
+                                            <span>&nbsp; IT/Software</span>
+                                        </div>
+                                        <div title="Position type"><i class="fa fa-id-card-o text-primary"
+                                                                      aria-hidden="true"></i> <span>&nbsp; {{challenge.interviewDetail.positionDetails.positionType ? challenge.interviewDetail.positionDetails.positionType:'Full Time'}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <section>
+                                <div class="tabs tabs-style-underline">
+                                    <nav>
+                                        <ul>
+                                            <li class="active"><a class="border-none" data-target="#section-underline-1" data-toggle="tab"
+                                                                  data-ng-click="setTab(1)"><i
+                                                    class="fa fa-info-circle text-primary"></i> Interview
+                                                Info
+                                            </a>
+                                            </li>
+                                            <li><a data-target="#section-underline-2" data-toggle="tab"
+                                                   data-ng-click="setTab(2)"><i
+                                                    class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+                                                Questions
+                                            </a>
+                                            </li>
+                                            <li><a data-target="#section-underline-3" data-toggle="tab"
+                                                   data-ng-click="setTab(3)"><i class="fa fa-bar-chart text-primary"
+                                                                                aria-hidden="true"></i> Analytics
+                                            </a>
+                                            </li>
+                                            <li><a data-target="#section-underline-4" data-toggle="tab"
+                                                   data-ng-click="setTab(4)"><i class="fa fa-cog text-primary" aria-hidden="true"></i> Options
+                                            </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row" data-ng-if="challenge.isCompleted && isSelectedTab(3)">
+                        <div class="col-md-12">
+                            <div class="panel panel-default selected-tab">
+                                <div class="panel-body">
+                                    <div class="col-md-9 padding-right-none">
+                                        <div class="panel panel-default border-none">
+
+                                            <div class="panel-body">
+                                                <h4><strong>Question-Time Distribution Graph</strong></h4>
+
+                                                <div class="text-center">
+                                                    <ts-chart id="pie-{{challenge._id}}" source="{{barGraph}}"
+                                                              type="column2d" width="100%"></ts-chart>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 padding-left-none">
+                                        <div class="panel panel-default border-none">
+                                            <div class="panel-body">
+                                                <h4><strong>Question Coverage Chart</strong></h4>
+
+                                                <div class="text-center">
+                                                    <ts-chart id="donut-{{challenge._id}}" source="{{donutChart}}"
+                                                              type="doughnut2d" width="100%"></ts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" data-ng-if="isSelectedTab(1)">
+                        <div class="col-md-12">
+                            <div class="panel panel-default border-none selected-tab-1">
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                            <tr class="table-data">
+                                                <td class="col-md-4">{{challenge.total_time | secToMin}}</td>
+                                                <td class="col-md-4">{{challenge.questions.length}}</td>
+                                                <td class="col-md-4">{{challenge.level.name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-md-4"><h4 class="resume-stats-custom-color">
+                                                    <i class="fa fa fa-question-circle welcome-box1"
+                                                       aria-hidden="true"></i> &nbsp;&nbsp;Time
+                                                    Given
+                                                </h4></td>
+                                                <td class="col-md-4"><h4 class="resume-stats-custom-color">
+                                                    <i class="fa fa-clock-o welcome-box2"
+                                                       aria-hidden="true"></i> &nbsp;&nbsp;Total Questions</h4></td>
+                                                <td class="col-md-4"><h4 class="resume-stats-custom-color">
+                                                    <i class="fa fa-info-circle  welcome-box4"
+                                                       aria-hidden="true"></i> &nbsp;&nbsp;Level
+                                                </h4></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5 class="interview-skill-section"
+                                            title="Skills Required"> <span class="interview-skills"
+                                                                           data-ng-repeat="data in challenge.interviewDetail.positionDetails.skills"> {{data}}</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default border-none detail-section-1">
+                                    <div class="panel-body padding-top-none">
+
+                                        <div class="col-md-4 offset-bottom-10 offset-top-12 padding-left-none">
+                                            <div class="col-md-6 padding-left-none "><h4><i
+                                                    class="fa fa-desktop text-success"
+                                                    aria-hidden="true"></i> &nbsp;Screen Sharing
+                                            </h4></div>
+                                            <div class="col-md-4">
+                                                <div class="text-left default-fonts"
+                                                     data-ng-class="{'text-success': challenge.interviewDetail.access.screenSharing,'text-danger':!challenge.interviewDetail.access.screenSharing}">
+                                                    <i class="fa "
+                                                       data-ng-class="{'fa-check': challenge.interviewDetail.access.screenSharing,'fa-times':!challenge.interviewDetail.access.screenSharing}"></i>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-4 offset-bottom-10 offset-top-12 padding-left-none">
+                                            <div class="col-md-6 padding-left-none"><h4><i
+                                                    class="fa fa-user-plus text-primary"
+                                                    aria-hidden="true"></i> &nbsp;Collaboration
+                                            </h4></div>
+                                            <div class="col-md-4">
+                                                <div class="text-left default-fonts"
+                                                     data-ng-class="{'text-success': challenge.interviewDetail.access.collaboration,'text-danger':!challenge.interviewDetail.access.collaboration}">
+                                                    <i class="fa "
+                                                       data-ng-class="{'fa-check': challenge.interviewDetail.access.collaboration,'fa-times':!challenge.interviewDetail.access.collaboration}"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4 offset-bottom-10 offset-top-12 padding-left-none">
+                                            <div class="col-md-6 padding-left-none"><h4><i
+                                                    class="fa fa-television text-info"
+                                                    aria-hidden="true"></i> &nbsp;Live Streaming
+                                            </h4></div>
+                                            <div class="col-md-4">
+                                                <div class="text-left  default-fonts"
+                                                     data-ng-class="{'text-success': challenge.interviewDetail.access.live,'text-danger':!challenge.interviewDetail.access.live}">
+                                                    <i class="fa "
+                                                       data-ng-class="{'fa-check': challenge.interviewDetail.access.live,'fa-times':!challenge.interviewDetail.access.live}"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-3 padding-right-none">
+                                            <div class="company-info">
+                                                <h4><i class="fa fa-phone text-primary"
+                                                       aria-hidden="true"></i>&nbsp;<span>{{challenge.interviewDetail.positionDetails.company.phone ? challenge.interviewDetail.positionDetails.company.phone:'+91 9999999999' }}</span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 padding-none">
+                                            <div class="company-info">
+                                                <h4><i class="fa fa-envelope-o text-primary"
+                                                       aria-hidden="true"></i>&nbsp;<a>{{challenge.interviewDetail.interviewerEmail}}</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 padding-left-none">
+                                            <div class="company-info">
+                                                <h4><i class="fa fa-globe text-primary"
+                                                       aria-hidden="true"></i>&nbsp;<a>www.innova-path.com</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row error-messages">
+                        <div class="col-md-12">
+                            <div class="panel panel-default border-none"
+                                 data-ng-if="(challenge.isUpcoming && isSelectedTab(2)) || (challenge.isUpcoming && isSelectedTab(3))">
+                                <div class="panel-body text-center">
+                                    <p>Interview not completed yet, please check the results after completion of
+                                        interview</p>
+                                </div>
+                            </div>
+                            <div class="panel panel-default border-none"
+                                 data-ng-if="(challenge.isExpired && isSelectedTab(2)) || (challenge.isExpired && isSelectedTab(3))">
+                                <div class="panel-body text-center">
+                                    <p>Interview has been expired
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" data-ng-if="challenge.isCompleted && isSelectedTab(2)">
+                        <div class="col-md-12">
+                            <div class="panel with-nav-tabs tab-menu active question-tab-result selected-tab">
+                                <div id="section-underline-1">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active panel-body" id="tab1info" ng-init="abc=1">
+                                            <div class="question">
+                                                <div id="carousel-example-generic" class="carousel slide"
+                                                     data-interval="false">
+                                                    <ol class="carousel-indicators carousel-indicators-numbers">
+                                                  <!--      <li ng-click="selectedQuestion({{question}})"
+                                                            data-target="#carousel-example-generic"
+                                                            data-slide-to="{{$index}}"
+                                                            class="{{abc == $index+1 ? '':'active'}}"
+                                                            ng-repeat="question in questions"
+                                                            id="scroll-{{question.question_id}}"
+                                                            ng-class="{selected : question.rowNo === idSelectedVote}">
+                                                            {{$index+1}}
+                                                        </li>-->
+                                                    </ol>
+                                                    <div class="carousel-inner" role="listbox">
+                                                        <div class="item {{abc == $index+1 ? 'active':''}}"
+                                                             data-ng-repeat="question in questions">
+                                                            <div class="col-sm-12 padding-none">
+                                                                <div class="panel panel-body question-list-box">
+                                                                    <div class="choice-answer-display">
+                                                                        <div class="col-sm-12 padding-left-none">
+                                                                            <div class="question-format-panel">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-1 col-xs-1 question-no">
+                                                                                        <span>{{question.rowNo + 1}}.</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-11 col-xs-11"><span><formator
+                                                                                            question="question.question"></formator></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="margin-none"
+                                                                                 ng-if="question.questiontype == 'Choice'">
+                                                                                <div class="choice-options">
+                                                                                    <div data-ng-if="question.candidateAnswer === 'a' && question.originalAnswer !== 'a'"
+                                                                                         class="wrong-ans">
+                                                                                        <i class="fa fa-times-circle"
+                                                                                           aria-hidden="true"></i>
+                                                                                        &nbsp;&nbsp;<label>{{question.answerOne}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.originalAnswer === 'a'"
+                                                                                         class="right-ans"><i
+                                                                                            class="fa fa-check-circle"
+                                                                                            aria-hidden="true"></i>&nbsp;&nbsp;<label>{{question.answerOne}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.candidateAnswer !== 'a' && question.originalAnswer !== 'a'">
+                                                                                        <i class="fa fa-circle-thin"
+                                                                                           aria-hidden="true"></i>&nbsp;&nbsp;<label>{{question.answerOne}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.candidateAnswer === 'b' && question.originalAnswer !== 'b'"
+                                                                                         class="wrong-ans"><i
+                                                                                            class="fa fa-times-circle details-red"
+                                                                                            aria-hidden="true"
+                                                                                            ></i>&nbsp;&nbsp;<label>{{question.answerTwo}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.originalAnswer === 'b'"
+                                                                                         class="right-ans"><i
+                                                                                            class="fa fa-check-circle"
+                                                                                            aria-hidden="true"></i>&nbsp;&nbsp;<label>{{question.answerTwo}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.candidateAnswer !== 'b' && question.originalAnswer !== 'b'">
+                                                                                        <i class="fa fa-circle-thin"
+                                                                                           aria-hidden="true"></i>&nbsp;&nbsp;<label>{{question.answerTwo}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.candidateAnswer === 'c' && question.originalAnswer !== 'c'"
+                                                                                         class="wrong-ans"><i
+                                                                                            class="fa fa-times-circle details-red"
+                                                                                            aria-hidden="true"
+                                                                                            ></i>&nbsp;&nbsp;<label>{{question.answerThree}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.originalAnswer === 'c'"
+                                                                                         class="right-ans"><i
+                                                                                            class="fa fa-check-circle"
+                                                                                            aria-hidden="true"></i>&nbsp;&nbsp;<label>{{question.answerThree}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.candidateAnswer !== 'c' && question.originalAnswer !== 'c'">
+                                                                                        <i class="fa fa-circle-thin"
+                                                                                           aria-hidden="true"></i>&nbsp;&nbsp;<label>{{question.answerThree}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.candidateAnswer === 'd' && question.originalAnswer !== 'd'"
+                                                                                         class="wrong-ans"><i
+                                                                                            class="fa fa-times-circle details-red"
+                                                                                            aria-hidden="true"
+                                                                                            ></i>&nbsp;&nbsp;<label>{{question.answerFour}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.originalAnswer === 'd'"
+                                                                                         class="right-ans"><i
+                                                                                            class="fa fa-check-circle"
+                                                                                            aria-hidden="true"></i>&nbsp;&nbsp;<label>{{question.answerFour}}</label>
+                                                                                    </div>
+                                                                                    <div data-ng-if="question.candidateAnswer !== 'd' && question.originalAnswer !== 'd'">
+                                                                                        <i class="fa fa-circle-thin"
+                                                                                           aria-hidden="true"></i>&nbsp;&nbsp;<label>{{question.answerFour}}</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br/>
+                                                                            </div>
+                                                                            <div class="media margin-none answer-display"
+                                                                                 ng-if="question.questiontype == 'Coding'">
+                                                                                <div class="media-body">
+                                                                                    <pre class="coding-section popup-coding">{{question.candidateAnswer}}</pre>
+                                                                                </div>
+                                                                                <br>
+
+                                                                                <div class="panel-footer coding-info">
+                                                                                    <p><strong>Result:</strong><span> {{question.result}}</span>
+                                                                                    </p>
+
+                                                                                    <div class="coding-result">
+                                                                                        <coding-result
+                                                                                                info="question.error"></coding-result>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="panel panel-default answer-display"
+                                                                                 ng-if="selectedQuestionAnswer.quizType === 'video' || questionType==='video'">
+                                                                                <div ng-if="isAnswersPopup">
+                                                                                    <div ng-if="isInterview === false"
+                                                                                         class="question-format-panel">
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-1 col-xs-1 question-no">
+                                                                                                <span>{{questionNum}}.</span>
+                                                                                            </div>
+                                                                                            <div class="col-md-11 col-xs-11"><span><formator
+                                                                                                    question="selectedQuestionAnswer.questionText"></formator></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div ng-if="selectedQuestionAnswer.youtube_id && !selectedQuestionAnswer.isVideoErrorMessage && !isAnswersPopup">
+                                                                                    <ts-player
+                                                                                            player-id="{{selectedQuestionAnswer._id}}"
+                                                                                            youtube-id="{{selectedQuestionAnswer.youtube_id}}"
+                                                                                            current-time="selectedQuestionAnswer.currentTime"
+                                                                                            start-time="{{selectedQuestionAnswer.startTime}}"
+                                                                                            stop-video="stopVideo"></ts-player>
+                                                                                </div>
+                                                                                <div ng-if="selectedQuestionAnswer.youtube_id && !selectedQuestionAnswer.isVideoErrorMessage && isAnswersPopup">
+                                                                                    <div ng-if="selectedQuestionAnswer.screen_sharing_id && selectedQuestionAnswer.youtube_id">
+                                                                                        <div class="col-md-6 padding-none">
+                                                                                            <div class="panel-heading text-center default-border">
+                                                                                                <h4><strong>Quiz
+                                                                                                    Video</strong>
+                                                                                                </h4>
+                                                                                            </div>
+                                                                                            <div class="video-border">
+                                                                                                <ts-player
+                                                                                                        player-id="{{selectedQuestionAnswer._id}}"
+                                                                                                        youtube-id="{{selectedQuestionAnswer.youtube_id}}"
+                                                                                                        current-time="selectedQuestionAnswer.currentTime"
+                                                                                                        start-time="{{selectedQuestionAnswer.MStartTime}}"
+                                                                                                        end-time="{{selectedQuestionAnswer.endTime}}"></ts-player>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6 padding-none">
+                                                                                            <div class="panel-heading text-center default-border">
+                                                                                                <h4><strong>Screen
+                                                                                                    Capture</strong>
+                                                                                                </h4>
+                                                                                            </div>
+                                                                                            <div class="video-border">
+                                                                                                <ts-player
+                                                                                                        player-id="{{selectedQuestionAnswer._id}}"
+                                                                                                        youtube-id="{{selectedQuestionAnswer.screen_sharing_id}}"></ts-player>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="popup-video"
+                                                                                         ng-if="selectedQuestionAnswer.screen_sharing_id && !selectedQuestionAnswer.youtube_id">
+                                                                                        <ts-player
+                                                                                                player-id="{{selectedQuestionAnswer._id}}"
+                                                                                                youtube-id="{{selectedQuestionAnswer.screen_sharing_id}}"></ts-player>
+                                                                                    </div>
+                                                                                    <div ng-if="!selectedQuestionAnswer.screen_sharing_id && selectedQuestionAnswer.youtube_id">
+                                                                                        <ts-player
+                                                                                                player-id="{{selectedQuestionAnswer._id}}"
+                                                                                                youtube-id="{{selectedQuestionAnswer.youtube_id}}"
+                                                                                                current-time="selectedQuestionAnswer.currentTime"
+                                                                                                start-time="{{selectedQuestionAnswer.MStartTime}}"
+                                                                                                end-time="{{selectedQuestionAnswer.endTime}}"
+                                                                                                ></ts-player>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="popup-video"
+                                                                                     ng-if="!selectedQuestionAnswer.youtube_id && !selectedQuestionAnswer.isVideoErrorMessage && selectedQuestionAnswer.source"
+                                                                                     class="expand">
+                                                                                    <ts-player
+                                                                                            player-id="{{selectedQuestionAnswer._id}}"
+                                                                                            source-url="{{selectedQuestionAnswer.source}}"></ts-player>
+                                                                                </div>
+                                                                                <div class="popup-video" align="center"
+                                                                                     ng-show="selectedQuestionAnswer.isVideoErrorMessage">
+                                                                                    <label
+                                                                                            class="no-video-found">No
+                                                                                        video
+                                                                                        found</label></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12 given-time">
+                                                                            <div class="col-sm-3">
+                                                                                <label><i
+                                                                                        class="fa fa-clock-o wrong-ans"
+                                                                                        aria-hidden="true"></i>
+                                                                                    Given: <span
+                                                                                            class="ts-color-font"> {{question.time}} Sec</span></label>
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <label><i
+                                                                                        class="fa fa-clock-o right-ans"
+                                                                                        aria-hidden="true"></i>
+                                                                                    Taken: <span
+                                                                                            class="ts-color-font"> {{question.time_taken}} Sec</span></label>
+                                                                            </div>
+                                                                            <div class="col-sm-4">
+                                                                                <div class="col-sm-4 text-right">
+                                                                                    <label class="ts-color-font"><i
+                                                                                            class="fa fa-star"
+                                                                                            aria-hidden="true"></i>
+                                                                                        Rating: </label>
+                                                                                </div>
+                                                                                <div class="col-sm-8">
+                                                                                    <ng-rate-it
+                                                                                            ng-model="rates"></ng-rate-it>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12">
+                                                                            <div class="feedback-box"
+                                                                                 ng-show="IsVisible">
+                                                                                <div class="feedback-content">
+                                                                    <textarea class="form-control" rows="2"
+                                                                              placeholder="Enter feecback message..."></textarea>
+                                                                                </div>
+                                                                                <div class="pull-right send-btn">
+                                                                                    <button type="button"
+                                                                                            class="btn-success btn-xs"
+                                                                                            ng-click="share(interview)">
+                                                                                        Give
+                                                                                        Feedback
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" data-ng-if="isSelectedTab(4)">
+                        <div class="col-md-12">
+                            <div class="panel panel-default border-none selected-tab">
+                                <div class="panel-body text-center">
+                                    <label class="default-headings">Interview scheduled on</label>
+                                    <time datetime="2014-09-20" class="icon">
+                                        <em>{{challenge.interviewDetail.interviewStartDateTime | date
+                                            :"EEEE"}}</em>
+                                        <strong>{{challenge.interviewDetail.interviewStartDateTime | date
+                                            :"MMMM"}}
+                                            {{challenge.interviewDetail.interviewStartDateTime | date
+                                            :"y"}}</strong>
+                                        <span>{{challenge.interviewDetail.interviewStartDateTime | date :"d"}}</span>
+                                        <p class="text-uppercase">{{challenge.interviewDetail.interviewStartDateTime | date :"h:mm a"}}
+                                    </time>
+                                    <button data-ng-if="challenge.isUpcoming || challenge.isExpired" class="btn btn-success reschedule-button"
+                                            data-ng-click="reSchedule(challenge)">Reschedule
+                                    </button>
+                                    <button data-ng-if="challenge.isCompleted" class="btn btn-success reschedule-button"
+                                            data-ng-click="reSchedule(challenge,'Retake')">Retake
+                                    </button>
+                                    <h4><span class="default-color">Reschedule of an interview is just a request to an employer</span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<br><br><br>
+
+

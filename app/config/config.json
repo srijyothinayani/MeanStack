@@ -1,0 +1,31 @@
+{
+  "reviewers" :[
+    {
+      "_id": "5b7a4884521b443ae4b53464",
+      "employee_name": "Sri Jyothi",
+      "email": "srijyothi@gmail.com",
+      "team": "UI",
+      "reviews": 2,
+      "reviewers":["Leela", "kasthuri"]
+    }
+  ],
+  "performance":[
+    {
+      "_id": "5b7a4884521b443ae4b534856",
+      "employee_name": "Jyothi",
+      "email": "Jyothi@gmail.com",
+      "team": "Devops",
+      "review_rating": 3.5
+
+    }
+  ],
+  "employees":[
+    {
+      "employee_name": "Jyothi123",
+      "email": "Jyothi@gmail.com",
+      "team": "QA",
+      "designation": "QA Automation Engineer",
+      "employee_id": 562123
+    }
+  ]
+}
