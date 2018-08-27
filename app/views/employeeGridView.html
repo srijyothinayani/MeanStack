@@ -1,6 +1,6 @@
 <div data-ng-controller="gridController" class="panel panel-body">
   <div class="col-md-10">
-      <table class="table create-interview-table" ng-if="interviews.length">
+      <table class="table create-interview-table" ng-if="employees.length">
           <thead class="my-challenge-header">
           <tr class="tab-header">
               <th><span class="span-header">Actions</span></th>
@@ -35,11 +35,11 @@
           </tr>
           </thead>
           <tbody class="row">
-          <tr class="interviews-table"
-              ng-repeat="interview in interviews | filter:searchInterview | filter:paginate | orderBy:sortKey:reverse">
+          <tr class="employees-table"
+              ng-repeat="interview in employees | filter:searchInterview | filter:paginate | orderBy:sortKey:reverse">
               <td class="table-actions"><a class="btn btn-info"
                                            title="edit"
-                                           ng-click="editInterview(interview)"><i
+                                           ng-click="addNewEmployee()"><i
                       class="glyphicon glyphicon-plus"
                       aria-hidden="true"></i> </a><a
                       class="btn btn-danger btn-delete"

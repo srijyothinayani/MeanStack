@@ -4,42 +4,18 @@ var mongoose = require('mongoose'),
         employee_name: {type: String},
         designation: {type: String},
         employee_id: {type: Number},
-        team: {type: String}
-    }),
-
-    performanceSchema = new Schema({
-        employee_name: {type: String},
         team: {type: String},
-        review_rating: {type: Number}
-    }),
-    reviewerSchema = new Schema({
-        employee_name: {type: String},
-        team: {type: String},
-        reviews: {type: Num},
-        reviewers:[]
-    }),
-
-    cacheRoutesSchema = new Schema({
-        email: {type: String},
-        candidate_id: {type: String},
-        user_agent: {},
-        questions: [],
+        department: {type: String},
+        level:{type: Number},
+        start_date:{type: Date},
+        experience: {type: Number},
+        skills:[],
         reviewers: [],
-        interviewStartDateTime: {type: Date},
-        time_taken: {type: Number},
-        total_time: {type: Number},
-        attempted: {type: Number},
-        correct: {type: Number},
-        interviewDetail: {
-            interviewerName: {type: String},
-            interviewType: {type: String}
-        },
-        subject: {},
-        level: {}
+        attemptedQuizes: {type: Number}
     }),
-    employeesSchemaModel = mongoose.model('employees', employeesSchema),
-    performanceSchemaModel = mongoose.model('performance-review', performanceSchema),
-    reviewerSchemaModel = mongoose.model('reviewer', reviewerSchema);
+
+    employeesSchemaModel = mongoose.model('employees', employeesSchema);
+
 function CommonModel() {
     this.cm = employeesSchemaModel;
 }

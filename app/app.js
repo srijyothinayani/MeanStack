@@ -1,1 +1,1 @@
-var challenge = angular.module("challenge", ['ui.router']);
+var challenge = angular.module("challenge", ['ui.router', 'ngResource']);
